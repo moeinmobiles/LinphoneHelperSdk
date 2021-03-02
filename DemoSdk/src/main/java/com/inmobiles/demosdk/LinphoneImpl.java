@@ -28,73 +28,9 @@ public class LinphoneImpl {
     private static PhoneServiceWaitThread mPhoneServiceWaitThread;
     private static String mUsername, mPassword, mServerIP;
 
-
     public static void startLinphone(Context context){
         startService(context);
-
-//        listenToEvents(context);
     }
-
-    private static void listenToEvents(Context context) {
-   addPhoneCallBack(new PhoneCallback() {
-       @Override
-       public void incomingCall(Call linphoneCall) {
-
-       }
-
-       @Override
-       public void outgoingInit() {
-
-       }
-
-       @Override
-       public void callConnected() {
-
-       }
-
-       @Override
-       public void callEnd() {
-
-       }
-
-       @Override
-       public void callReleased() {
-
-       }
-
-       @Override
-       public void error() {
-
-       }
-   });
-   addCallback(new RegistrationCallback() {
-       @Override
-       public void registrationNone() {
-
-       }
-
-       @Override
-       public void registrationProgress() {
-
-       }
-
-       @Override
-       public void registrationOk() {
-
-       }
-
-       @Override
-       public void registrationCleared() {
-
-       }
-
-       @Override
-       public void registrationFailed() {
-
-       }
-   });
-    }
-
 
     private static void startService(Context context) {
         if (!LinphoneService.isReady()) {
@@ -174,8 +110,6 @@ public class LinphoneImpl {
         CallParams params = LinphoneManager.getLc().createCallParams(currentCall);
         params.enableVideo(false);
         currentCall.acceptWithParams(params);
-
-//            LinphoneManager.getLc().acceptCall(LinphoneManager.getLc().getCurrentCall());
     }
 
     public static void declineCall(){
@@ -190,11 +124,6 @@ public class LinphoneImpl {
 
     public static void toggleMicro(boolean isMicMuted) {
         LinphoneUtils.getInstance().toggleMicro(isMicMuted);
-    }
-
-
-    private static void toggleSpeaker(boolean isSpeakerEnabled) {
-//        LinphoneUtils.getInstance().toggleSpeaker(isSpeakerEnabled);
     }
 
     private static class RegServiceWaitThread extends Thread {
@@ -258,7 +187,5 @@ public class LinphoneImpl {
     public static Core getLC() {
         return LinphoneManager.getLc();
     }
-
-
 
 }

@@ -129,10 +129,6 @@ public class LinphoneUtils {
         mLinphoneCore.enableMic(!isMicMuted);
     }
 
-//     public void toggleSpeaker(boolean isSpeakerEnabled) {
-//         mLinphoneCore.enableSpeaker(isSpeakerEnabled);
-//     }
-
     public static void copyIfNotExist(Context context, int resourceId, String target) throws IOException {
         File fileToCopy = new File(target);
         if (!fileToCopy.exists()) {

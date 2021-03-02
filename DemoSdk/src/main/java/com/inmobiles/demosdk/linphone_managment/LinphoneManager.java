@@ -115,8 +115,6 @@ public class LinphoneManager  implements CoreListener{
     }
 
     private synchronized void startLibLinphone(Context context) {
-
-            //TODO: UNCOMMENT
         try {
             copyAssetsFromPackage();
         } catch (Exception e) {
@@ -135,9 +133,6 @@ public class LinphoneManager  implements CoreListener{
 
             mLc.start();
             mLc.enableKeepAlive(true);
-
-//            if (mLc.hasBuiltinEchoCanceller())
-//                mLc.enableEchoCancellation(false);
 
             initLibLinphone();
 
@@ -177,26 +172,12 @@ public class LinphoneManager  implements CoreListener{
 
         mLc.enableAdaptiveRateControl(true);
 
-
-//        mLc.enableVideoCapture(false);
-//        mLc.enableVideoDisplay(false);
-//        mLc.enableQrcodeVideoPreview(false);
-//        mLc.enableVideoSourceReuse(false);
-//        mLc.enableVideoAdaptiveJittcomp(false);
-//        mLc.enableVideoMulticast(false);
-//        mLc.enableVideoPreview(false);
-//        mLc.enableSelfView(false);
-
         LinphoneUtils.getConfig(mServiceContext).setInt("audio", "codec_bitrate_limit", 36);
 
         mLc.setUploadBandwidth(1536);
         mLc.setDownloadBandwidth(1536);
 
         setCodecMime();
-
-//        IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
-//        filter.addAction(Intent.ACTION_SCREEN_OFF);
-//        mServiceContext.registerReceiver(mKeepAliveReceiver, filter);
     }
 
     private void setCodecMime() {
@@ -212,50 +193,12 @@ public class LinphoneManager  implements CoreListener{
             }
         }
         mLc.setAudioPayloadTypes(ptList);
-//        for (PayloadType payloadType : mLc.getAudioPayloadTypes()) {
-//
-//                if ( payloadType.getMimeType().equalsIgnoreCase("pcmu")) {
-//                    payloadType.enable(true);
-//
-//                } else {
-//                    payloadType.enable(false);
-//                }
-//            }
-//            payloadType.enable(true);
-//            android.util.Log.e(TAG, "setCodecMime = " + payloadType.getMime() + " Rate " + payloadType.getRate() + " receviceFmtp " + payloadType.getRecvFmtp());
-//            if (payloadType.getMime().equals("PCMA") && payloadType.getRate() == 8000) {
-//                try {
-//                    android.util.Log.e(TAG, "setCodecMime: " + payloadType.getMime() + " " + payloadType.getRate());
-//                    mLc.enablePayloadType(payloadType, true);
-//                } catch (LinphoneCoreException e) {
-//                    android.util.Log.e(TAG, "setCodecMime: " + e);
-//                }
-//            } else {
-//                try {
-//                    mLc.enablePayloadType(payloadType, false);
-//                } catch (LinphoneCoreException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//        for (PayloadType payloadType : mLc.getVideoPayloadTypes()) {
-//            payloadType.enable(false);
-////                android.util.Log.e(TAG, "setCodecMime: mime: " + payloadType.getMime() + " rate: " + payloadType.getRate());
-////                mLc.enablePayloadType(payloadType, true);
-////                mLc.enableVideoCapture(false);
-//        }
     }
 
-
-//TODO: UNCOMMENT
     private void copyAssetsFromPackage() throws IOException {
-//        LinphoneUtils.copyIfNotExist(mServiceContext, R.raw.oldphone_mono, mRingSoundFile);
-//        LinphoneUtils.copyIfNotExist(mServiceContext, R.raw.ringback, mRingBackSoundFile);
-//        LinphoneUtils.copyIfNotExist(mServiceContext, R.raw.toy_mono, mPauseSoundFile);
         LinphoneUtils.copyIfNotExist(mServiceContext, R.raw.linphonerc_default, mLinphoneConfigFile);
         LinphoneUtils.copyIfNotExist(mServiceContext, R.raw.linphonerc_factory, new File(mLinphoneFactoryConfigFile).getName());
         LinphoneUtils.copyIfNotExist(mServiceContext, R.raw.lpconfig, mLPConfigXsd);
-//        LinphoneUtils.copyIfNotExist(mServiceContext, R.raw.rootca, mLinphoneRootCaFile);
     }
 
     private void setUserAgent() {
@@ -487,7 +430,5 @@ public class LinphoneManager  implements CoreListener{
     public void onMessageSent(Core lc, ChatRoom room, ChatMessage message) {
 
     }
-
-
 
 }

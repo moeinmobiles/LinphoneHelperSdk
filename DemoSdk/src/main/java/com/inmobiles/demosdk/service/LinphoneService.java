@@ -63,7 +63,6 @@ import static android.media.AudioManager.STREAM_VOICE_CALL;
 
 public class LinphoneService extends Service implements CoreListener {
     private static final String TAG = "LinphoneService";
-//    private PendingIntent mKeepAlivePendingIntent;
     private static LinphoneService instance;
     private static PhoneCallback sPhoneCallback;
     private static RegistrationCallback sRegistrationCallback;
@@ -99,9 +98,6 @@ public class LinphoneService extends Service implements CoreListener {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             setupChannels();
 
-
-
-
        notif = new NotificationCompat.Builder(this, "channeladmin");
         notif.setContentTitle("Linphone Service");
         notif.setContentText("");
@@ -118,15 +114,6 @@ public class LinphoneService extends Service implements CoreListener {
 
         mAudioManager = ((AudioManager)getSystemService(Context.AUDIO_SERVICE));
         mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
-//        Intent intent = new Intent(this, KeepAliveHandler.class);
-//        mKeepAlivePendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        ((AlarmManager)this.getSystemService(Context.ALARM_SERVICE)).setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-//                SystemClock.elapsedRealtime() + 60000, 60000, mKeepAlivePendingIntent);
-
-//        PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
-//        mWakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Linphone");
-//        mWakeLock.acquire();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -150,11 +137,6 @@ public class LinphoneService extends Service implements CoreListener {
         removeAllCallback();
         LinphoneManager.getLc().stop();
         LinphoneManager.destroy();
-//        if (mWakeLock != null) {
-//            mWakeLock.release();
-//            mWakeLock = null;
-//        }
-//        ((AlarmManager)this.getSystemService(Context.ALARM_SERVICE)).cancel(mKeepAlivePendingIntent);
     }
 
     @Nullable
@@ -754,6 +736,10 @@ public class LinphoneService extends Service implements CoreListener {
             mAudioManager.setMode(AudioManager.MODE_NORMAL);
 
         isRinging = false;
+
+
+        //TODO : TO BE APPLIED LATER
+
         // You may need to call galaxys audio hack after this method
 //        if (!BluetoothManager.getInstance().isBluetoothHeadsetAvailable()) {
 //            if (mServiceContext.getResources().getBoolean(R.bool.isTablet)) {
@@ -766,6 +752,7 @@ public class LinphoneService extends Service implements CoreListener {
 //        }
     }
 
+    //TODO: TO BE APPLIED LATER
     public void startBluetooth() {
 //        if (BluetoothManager.getInstance().isBluetoothHeadsetAvailable()) {
 //            BluetoothManager.getInstance().routeAudioToBluetooth();
